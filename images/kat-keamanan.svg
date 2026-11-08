@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" role="img" aria-label="Keamanan dan Ketertiban">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ef6c00"/><stop offset="1" stop-color="#bf360c"/></linearGradient></defs>
+<rect width="400" height="240" fill="url(#g)"/>
+<circle cx="340" cy="45" r="60" fill="#fff" opacity=".12"/><circle cx="50" cy="210" r="70" fill="#fff" opacity=".10"/>
+
+<path d="M200 38 L270 64 V120 C270 165 238 195 200 210 C162 195 130 165 130 120 V64 Z" fill="#fff3e0"/>
+<path d="M200 54 L255 74 V120 C255 156 230 181 200 194 Z" fill="#ffcc80" opacity=".6"/>
+<path d="M170 120 l22 24 l40 -48" stroke="#e65100" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+</svg>

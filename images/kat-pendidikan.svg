@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" role="img" aria-label="Pendidikan">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbc02d"/><stop offset="1" stop-color="#e65100"/></linearGradient></defs>
+<rect width="400" height="240" fill="url(#g)"/>
+<circle cx="340" cy="45" r="60" fill="#fff" opacity=".12"/><circle cx="50" cy="210" r="70" fill="#fff" opacity=".10"/>
+
+<polygon points="200,60 300,100 200,140 100,100" fill="#37474f"/>
+<path d="M140 118 V158 C140 175 260 175 260 158 V118 L200 142 Z" fill="#546e7a"/>
+<line x1="300" y1="100" x2="300" y2="160" stroke="#37474f" stroke-width="5"/><circle cx="300" cy="166" r="9" fill="#ffee58"/>
+<rect x="60" y="170" width="70" height="14" rx="3" fill="#fff"/><rect x="66" y="156" width="64" height="14" rx="3" fill="#ffe082"/>
+
+</svg>
