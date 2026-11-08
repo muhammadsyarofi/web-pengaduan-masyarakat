@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2e7d32">
+  <title>Beranda — Pengaduan Desa Luwung</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Pengaduan Luwung">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="beranda">
+  <div id="offlineBar" class="offline-bar" role="status"></div>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="app-shell">
+    <aside class="app-sidebar" id="appSidebar" aria-label="Menu utama">
+      <div class="sidebar-brand">
+        <div class="icon">🏡</div>
+        <div>
+          <strong>Desa Luwung</strong>
+          <small>Pengaduan Masyarakat</small>
+        </div>
+      </div>
+      <nav>
+        <a href="beranda.html" class="active"><span class="ic">🏠</span> Beranda</a>
+        <a href="pengaduan.html"><span class="ic">📝</span> Buat Pengaduan</a>
+        <a href="lacak.html"><span class="ic">🔍</span> Cek Status</a>
+        <a href="daftar.html"><span class="ic">📋</span> Daftar Publik</a>
+        <a href="profil.html"><span class="ic">ℹ️</span> Profil Desa</a>
+        <a href="#" id="btnLogoutWarga"><span class="ic">🚪</span> Keluar</a>
+      </nav>
+      <div class="sidebar-user" id="sidebarUserInfo">—</div>
+    </aside>
+
+    <div class="app-main">
+      <div class="app-topbar">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <button type="button" class="btn-icon menu-toggle" id="btnToggleMenu" aria-label="Buka menu"
+            style="background:var(--hijau-lembut);color:var(--hijau-tua);">☰</button>
+          <h2 id="pageTitle">Beranda</h2>
+        </div>
+        <button type="button" class="btn-icon" data-theme-toggle aria-label="Mode gelap"
+          style="background:var(--abu-muda);color:var(--teks);">🌙</button>
+      </div>
+
+      <div class="app-content">
+        <section class="hero-photo" id="beranda">
+          <img src="images/image.png" alt="Pendopo / Balai Desa Luwung" class="hero-photo-img" width="750" height="375">
+          <div class="hero-photo-overlay"></div>
+          <div class="hero-photo-content">
+            <span class="hero-tag">🏡 Pemerintah Desa Luwung</span>
+            <h1>Selamat datang</h1>
+            <p id="welcomeText">Sampaikan pengaduan, aspirasi, dan saran Anda kepada Pemerintah Desa Luwung.</p>
+            <div class="hero-actions">
+              <a href="pengaduan.html" class="btn btn-secondary">📝 Buat Pengaduan</a>
+              <a href="lacak.html" class="btn btn-light">🔍 Cek Status</a>
+            </div>
+          </div>
+        </section>
+
+        <div class="stats-grid stats-overlap" aria-label="Statistik pengaduan">
+          <div class="stat-card"><div class="stat-number" id="statTotal">0</div><div class="stat-label">Total Masuk</div></div>
+          <div class="stat-card baru"><div class="stat-number" id="statBaru">0</div><div class="stat-label">Baru</div></div>
+          <div class="stat-card diproses"><div class="stat-number" id="statProses">0</div><div class="stat-label">Diproses</div></div>
+          <div class="stat-card selesai"><div class="stat-number" id="statSelesai">0</div><div class="stat-label">Selesai</div></div>
+        </div>
+
+        <section class="home-section" id="cara">
+          <h2 class="section-title">Cara Menyampaikan Pengaduan</h2>
+          <p class="section-sub">Mudah, cepat, dan bisa dipantau kapan saja.</p>
+          <div class="steps-grid">
+            <article class="step-card">
+              <img src="images/langkah-1.svg" alt="Mengisi formulir pengaduan" loading="lazy" width="400" height="240">
+              <div class="step-body"><span class="step-num">1</span><h3>Isi Formulir</h3><p>Tulis judul, isi pengaduan, dan lampirkan foto bukti bila ada.</p></div>
+            </article>
+            <article class="step-card">
+              <img src="images/langkah-2.svg" alt="Menerima kode tiket" loading="lazy" width="400" height="240">
+              <div class="step-body"><span class="step-num">2</span><h3>Dapatkan Kode Tiket</h3><p>Setelah terkirim, simpan kode tiket untuk melacak pengaduan Anda.</p></div>
+            </article>
+            <article class="step-card">
+              <img src="images/langkah-3.svg" alt="Memantau status pengaduan" loading="lazy" width="400" height="240">
+              <div class="step-body"><span class="step-num">3</span><h3>Pantau Status</h3><p>Lihat perkembangan penanganan oleh perangkat desa di menu Cek Status.</p></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="home-section" id="kategori-info">
+          <h2 class="section-title">Jenis Pengaduan yang Dilayani</h2>
+          <p class="section-sub">Pilih topik untuk langsung membuka formulir pengaduan.</p>
+          <div class="kat-grid">
+            <a href="pengaduan.html?kategori=Infrastruktur%20%28jalan%2C%20jembatan%2C%20drainase%29" class="kat-card"><img src="images/kat-infrastruktur.svg" alt="" loading="lazy" width="400" height="240"><span>Infrastruktur</span></a>
+            <a href="pengaduan.html?kategori=Kebersihan%20%26%20Sampah" class="kat-card"><img src="images/kat-kebersihan.svg" alt="" loading="lazy" width="400" height="240"><span>Kebersihan &amp; Sampah</span></a>
+            <a href="pengaduan.html?kategori=Penerangan%20Jalan" class="kat-card"><img src="images/kat-penerangan.svg" alt="" loading="lazy" width="400" height="240"><span>Penerangan Jalan</span></a>
+            <a href="pengaduan.html?kategori=Air%20Bersih%20%26%20Irigasi" class="kat-card"><img src="images/kat-air.svg" alt="" loading="lazy" width="400" height="240"><span>Air Bersih &amp; Irigasi</span></a>
+            <a href="pengaduan.html?kategori=Keamanan%20%26%20Ketertiban" class="kat-card"><img src="images/kat-keamanan.svg" alt="" loading="lazy" width="400" height="240"><span>Keamanan &amp; Ketertiban</span></a>
+            <a href="pengaduan.html?kategori=Pelayanan%20Administrasi" class="kat-card"><img src="images/kat-administrasi.svg" alt="" loading="lazy" width="400" height="240"><span>Pelayanan Administrasi</span></a>
+            <a href="pengaduan.html?kategori=Bantuan%20Sosial" class="kat-card"><img src="images/kat-bansos.svg" alt="" loading="lazy" width="400" height="240"><span>Bantuan Sosial</span></a>
+            <a href="pengaduan.html?kategori=Kesehatan" class="kat-card"><img src="images/kat-kesehatan.svg" alt="" loading="lazy" width="400" height="240"><span>Kesehatan</span></a>
+            <a href="pengaduan.html?kategori=Pendidikan" class="kat-card"><img src="images/kat-pendidikan.svg" alt="" loading="lazy" width="400" height="240"><span>Pendidikan</span></a>
+            <a href="pengaduan.html?kategori=Lainnya" class="kat-card"><img src="images/kat-lainnya.svg" alt="" loading="lazy" width="400" height="240"><span>Lainnya</span></a>
+          </div>
+        </section>
+
+        <section class="home-section" id="galeri">
+          <h2 class="section-title">Sekilas Desa Luwung</h2>
+          <p class="section-sub">Kecamatan Mundu, Kabupaten Cirebon, Jawa Barat.</p>
+          <div class="galeri-grid">
+            <figure class="galeri-item galeri-besar"><img src="images/galeri-pendopo.jpg" alt="Pendopo Balai Desa Luwung" loading="lazy" width="480" height="360"><figcaption>Pendopo Balai Desa</figcaption></figure>
+            <figure class="galeri-item"><img src="images/galeri-taman.jpg" alt="Taman dan pepohonan di sisi balai desa" loading="lazy" width="480" height="360"><figcaption>Taman Balai Desa</figcaption></figure>
+            <figure class="galeri-item"><img src="images/galeri-kantor.jpg" alt="Gedung kantor desa" loading="lazy" width="480" height="360"><figcaption>Kantor Desa</figcaption></figure>
+            <figure class="galeri-item"><img src="images/galeri-halaman.jpg" alt="Halaman depan balai desa" loading="lazy" width="750" height="280"><figcaption>Halaman Depan</figcaption></figure>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" aria-live="polite"></div>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!Storage.requireUserOrRedirect()) return;
+      LuwungApp.initAppShell();
+      LuwungApp.renderBeranda();
+    });
+  </script>
+  <script src="js/platform.js"></script>
+</body>
+</html>

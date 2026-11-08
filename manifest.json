@@ -1,0 +1,27 @@
+{
+  "id": "./index.html",
+  "name": "Pengaduan Masyarakat Desa Luwung",
+  "short_name": "Pengaduan Luwung",
+  "description": "Platform pengaduan, aspirasi, dan saran warga Desa Luwung, Kecamatan Mundu, Kabupaten Cirebon. Dapat dipakai di web, desktop, dan mobile.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "background_color": "#e8f5e9",
+  "theme_color": "#2e7d32",
+  "orientation": "any",
+  "lang": "id",
+  "dir": "ltr",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Buat Pengaduan", "short_name": "Pengaduan", "url": "./pengaduan.html", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Cek Status", "short_name": "Cek Status", "url": "./lacak.html", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Daftar Publik", "short_name": "Daftar", "url": "./daftar.html", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] }
+  ],
+  "categories": ["government", "utilities"]
+}

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Panel Admin Pengaduan Desa Luwung">
+  <meta name="theme-color" content="#1b5e20">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin — Pengaduan Desa Luwung</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Pengaduan Luwung">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body class="admin-page">
+  <!-- ========== LOGIN ========== -->
+  <div id="loginSection" class="login-page">
+    <div class="login-card">
+      <div style="text-align:center; font-size:2.5rem; margin-bottom:8px;">🏡</div>
+      <h1>Admin Desa Luwung</h1>
+      <p class="subtitle">Panel pengelolaan pengaduan masyarakat</p>
+
+      <div class="demo-info">
+        <strong>⚠️ Demo Client-Side</strong><br>
+        Login ini hanya untuk demonstrasi di browser. Bukan keamanan produksi.<br>
+        Username: <code>admin</code> &nbsp; Password: <code>luwung2026</code>
+      </div>
+
+      <form id="formLogin">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" class="form-control" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" class="form-control" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Masuk</button>
+      </form>
+
+      <p style="text-align:center; margin-top:20px;">
+        <a href="index.html">← Kembali ke halaman publik</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- ========== ADMIN APP ========== -->
+  <div id="adminApp" class="hidden">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-header">
+        <span style="font-size:1.5rem;">🏡</span>
+        <div>
+          <strong>Admin Luwung</strong><br>
+          <small style="opacity:0.8;">Pengaduan Masyarakat</small>
+        </div>
+      </div>
+      <nav>
+        <a href="#dashboard" data-section="dashboard" class="active">📊 Dashboard</a>
+        <a href="#pengaduan" data-section="pengaduan">📋 Daftar Pengaduan</a>
+        <a href="#pengaturan" data-section="pengaturan">⚙️ Pengaturan</a>
+        <a href="#backup" data-section="backup">💾 Backup & Ekspor</a>
+        <a href="index.html" style="margin-top:20px; border-top:1px solid rgba(255,255,255,0.15);">🌐 Halaman Publik</a>
+        <a href="#" id="btnLogout">🚪 Keluar</a>
+      </nav>
+    </aside>
+
+    <div class="admin-main">
+      <div class="admin-topbar">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <button class="btn-icon" id="btnToggleSidebar" aria-label="Menu" style="background:var(--hijau-lembut); color:var(--hijau-tua);">☰</button>
+          <h2 id="pageTitle" style="font-size:1.15rem; margin:0;">Dashboard</h2>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button class="btn-icon" data-theme-toggle aria-label="Mode gelap" style="background:var(--abu-muda); color:var(--teks);">🌙</button>
+        </div>
+      </div>
+
+      <div class="admin-content">
+        <!-- DASHBOARD -->
+        <section id="section-dashboard" class="admin-section">
+          <div class="stats-grid" id="dashStats" style="margin-bottom:20px;">
+            <!-- diisi JS -->
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr; gap:16px;" class="chart-row">
+            <div class="chart-container">
+              <h3 style="margin-bottom:12px;">Status Pengaduan</h3>
+              <canvas id="chartStatus" width="300" height="200" aria-label="Grafik status"></canvas>
+            </div>
+            <div class="chart-container">
+              <h3 style="margin-bottom:12px;">Per Kategori</h3>
+              <canvas id="chartKategori" width="300" height="220" aria-label="Grafik kategori"></canvas>
+            </div>
+          </div>
+
+          <h3 style="margin:20px 0 12px;">Pengaduan Terbaru</h3>
+          <div id="pengaduanTerbaru"></div>
+        </section>
+
+        <!-- DAFTAR PENGADUAN -->
+        <section id="section-pengaduan" class="admin-section" style="display:none;">
+          <div class="filter-bar">
+            <input type="search" id="filterQ" class="form-control" placeholder="Cari kode, judul, nama...">
+            <select id="filterKatAdmin" class="form-control">
+              <option value="">Semua Kategori</option>
+            </select>
+            <select id="filterStatusAdmin" class="form-control">
+              <option value="">Semua Status</option>
+              <option value="Baru">Baru</option>
+              <option value="Diverifikasi">Diverifikasi</option>
+              <option value="Diproses">Diproses</option>
+              <option value="Selesai">Selesai</option>
+              <option value="Ditolak">Ditolak</option>
+            </select>
+            <input type="text" id="filterRT" class="form-control" placeholder="RT" style="max-width:80px;">
+          </div>
+
+          <p id="tabelInfo" style="font-size:0.9rem; color:var(--teks-lembut); margin-bottom:8px;"></p>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Kode</th>
+                  <th>Judul</th>
+                  <th>Kategori</th>
+                  <th>Status</th>
+                  <th>RT/RW</th>
+                  <th>Tanggal</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="tabelBody"></tbody>
+            </table>
+          </div>
+          <div class="pagination" id="pagination"></div>
+        </section>
+
+        <!-- PENGATURAN -->
+        <section id="section-pengaturan" class="admin-section" style="display:none;">
+          <div class="card">
+            <h3 class="card-title">Pengaturan Umum</h3>
+            <form id="formPengaturan">
+              <div class="form-group">
+                <label for="set_namaKepalaDesa">Nama Kepala Desa</label>
+                <input type="text" id="set_namaKepalaDesa" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="set_alamatKantor">Alamat Kantor Desa</label>
+                <textarea id="set_alamatKantor" class="form-control" rows="2"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="set_jamPelayanan">Jam Pelayanan</label>
+                <input type="text" id="set_jamPelayanan" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="set_telepon">Telepon</label>
+                <input type="text" id="set_telepon" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="set_whatsapp">WhatsApp (format: 628xxxxxxxxxx)</label>
+                <input type="text" id="set_whatsapp" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="set_email">Email</label>
+                <input type="email" id="set_email" class="form-control">
+              </div>
+
+              <h4 style="margin:20px 0 10px;">Daftar Kategori</h4>
+              <div id="daftarKategori"></div>
+              <button type="button" class="btn btn-outline btn-sm" id="btnTambahKategori" style="margin-top:8px;">+ Tambah Kategori</button>
+
+              <button type="submit" class="btn btn-primary btn-block" style="margin-top:24px;">Simpan Pengaturan</button>
+            </form>
+          </div>
+        </section>
+
+        <!-- BACKUP -->
+        <section id="section-backup" class="admin-section" style="display:none;">
+          <div class="card">
+            <h3 class="card-title">Backup & Restore Data</h3>
+            <p style="margin-bottom:16px; color:var(--teks-lembut);">Data saat ini disimpan di localStorage browser. Lakukan backup secara berkala.</p>
+            <div style="display:flex; flex-wrap:wrap; gap:10px;">
+              <button class="btn btn-primary" id="btnExportJSON">📥 Unduh Backup JSON</button>
+              <button class="btn btn-outline" id="btnImportJSON">📤 Import Backup JSON</button>
+              <input type="file" id="importFile" accept=".json" style="display:none;">
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Ekspor & Cetak</h3>
+            <div style="display:flex; flex-wrap:wrap; gap:10px;">
+              <button class="btn btn-secondary" id="btnExportCSV">📊 Ekspor CSV</button>
+              <button class="btn btn-outline" id="btnPrint">🖨️ Cetak Laporan</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Catatan Keterbatasan</h3>
+            <ul style="padding-left:20px; color:var(--teks-lembut); font-size:0.95rem;">
+              <li>Data hanya tersimpan di perangkat/browser ini.</li>
+              <li>Jika cache dibersihkan atau ganti perangkat, data hilang.</li>
+              <li>Login admin hanya demo client-side — bukan keamanan produksi.</li>
+              <li>Untuk produksi: gunakan backend (Firebase, Google Sheets, atau REST API) dan autentikasi yang aman.</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Detail -->
+  <div class="modal-overlay" id="modalDetail" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modalTitle">Detail Pengaduan</h3>
+        <button class="btn-icon" id="btnCloseModal" aria-label="Tutup" style="background:var(--abu-muda); color:var(--teks);">×</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="btnCloseModal2" onclick="document.getElementById('modalDetail').classList.remove('show')">Tutup</button>
+        <button class="btn btn-primary" id="btnSimpanStatus">Simpan Perubahan</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" aria-live="polite"></div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/platform.js"></script>
+</body>
+</html>

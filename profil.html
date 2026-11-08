@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2e7d32">
+  <title>Profil Desa — Pengaduan Desa Luwung</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Pengaduan Luwung">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="profil">
+  <div id="offlineBar" class="offline-bar" role="status"></div>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="app-shell">
+    <aside class="app-sidebar" id="appSidebar" aria-label="Menu utama">
+      <div class="sidebar-brand">
+        <div class="icon">🏡</div>
+        <div>
+          <strong>Desa Luwung</strong>
+          <small>Pengaduan Masyarakat</small>
+        </div>
+      </div>
+      <nav>
+        <a href="beranda.html"><span class="ic">🏠</span> Beranda</a>
+        <a href="pengaduan.html"><span class="ic">📝</span> Buat Pengaduan</a>
+        <a href="lacak.html"><span class="ic">🔍</span> Cek Status</a>
+        <a href="daftar.html"><span class="ic">📋</span> Daftar Publik</a>
+        <a href="profil.html" class="active"><span class="ic">ℹ️</span> Profil Desa</a>
+        <a href="#" id="btnLogoutWarga"><span class="ic">🚪</span> Keluar</a>
+      </nav>
+      <div class="sidebar-user" id="sidebarUserInfo">—</div>
+    </aside>
+
+    <div class="app-main">
+      <div class="app-topbar">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <button type="button" class="btn-icon menu-toggle" id="btnToggleMenu" aria-label="Buka menu"
+            style="background:var(--hijau-lembut);color:var(--hijau-tua);">☰</button>
+          <h2 id="pageTitle">Profil Desa</h2>
+        </div>
+        <button type="button" class="btn-icon" data-theme-toggle aria-label="Mode gelap"
+          style="background:var(--abu-muda);color:var(--teks);">🌙</button>
+      </div>
+
+      <div class="app-content">
+        <section id="profil" class="page-section">
+          <h2 class="section-title">🏡 Profil Desa &amp; Kontak</h2>
+          <div id="profilContent"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" aria-live="polite"></div>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!Storage.requireUserOrRedirect()) return;
+      LuwungApp.initAppShell();
+      LuwungApp.renderProfil();
+    });
+  </script>
+  <script src="js/platform.js"></script>
+</body>
+</html>

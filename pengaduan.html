@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2e7d32">
+  <title>Buat Pengaduan — Pengaduan Desa Luwung</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Pengaduan Luwung">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="pengaduan">
+  <div id="offlineBar" class="offline-bar" role="status"></div>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="app-shell">
+    <aside class="app-sidebar" id="appSidebar" aria-label="Menu utama">
+      <div class="sidebar-brand">
+        <div class="icon">🏡</div>
+        <div>
+          <strong>Desa Luwung</strong>
+          <small>Pengaduan Masyarakat</small>
+        </div>
+      </div>
+      <nav>
+        <a href="beranda.html"><span class="ic">🏠</span> Beranda</a>
+        <a href="pengaduan.html" class="active"><span class="ic">📝</span> Buat Pengaduan</a>
+        <a href="lacak.html"><span class="ic">🔍</span> Cek Status</a>
+        <a href="daftar.html"><span class="ic">📋</span> Daftar Publik</a>
+        <a href="profil.html"><span class="ic">ℹ️</span> Profil Desa</a>
+        <a href="#" id="btnLogoutWarga"><span class="ic">🚪</span> Keluar</a>
+      </nav>
+      <div class="sidebar-user" id="sidebarUserInfo">—</div>
+    </aside>
+
+    <div class="app-main">
+      <div class="app-topbar">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <button type="button" class="btn-icon menu-toggle" id="btnToggleMenu" aria-label="Buka menu"
+            style="background:var(--hijau-lembut);color:var(--hijau-tua);">☰</button>
+          <h2 id="pageTitle">Buat Pengaduan</h2>
+        </div>
+        <button type="button" class="btn-icon" data-theme-toggle aria-label="Mode gelap"
+          style="background:var(--abu-muda);color:var(--teks);">🌙</button>
+      </div>
+
+      <div class="app-content">
+        <section id="pengaduan" class="page-section">
+          <div id="formSection">
+            <div class="card">
+              <h2 class="card-title">📝 Formulir Pengaduan</h2>
+              <p class="hint" style="margin-bottom:16px;">Tanda * wajib diisi.</p>
+              <form id="formPengaduan" novalidate>
+                <div class="checkbox-group">
+                  <input type="checkbox" id="anonim" name="anonim">
+                  <label for="anonim">Kirim sebagai anonim</label>
+                </div>
+                <div class="form-group" id="namaGroup">
+                  <label for="nama">Nama Lengkap</label>
+                  <input type="text" id="nama" class="form-control" autocomplete="name">
+                </div>
+                <div class="form-group">
+                  <label for="nik">NIK (opsional)</label>
+                  <input type="text" id="nik" class="form-control" inputmode="numeric" maxlength="16">
+                </div>
+                <div class="form-group">
+                  <label for="whatsapp">Nomor WhatsApp *</label>
+                  <input type="tel" id="whatsapp" class="form-control" required inputmode="tel">
+                  <div class="error-msg">Nomor WhatsApp wajib diisi.</div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                  <div class="form-group"><label for="rt">RT</label><input type="text" id="rt" class="form-control" maxlength="3"></div>
+                  <div class="form-group"><label for="rw">RW</label><input type="text" id="rw" class="form-control" maxlength="3"></div>
+                </div>
+                <div class="form-group">
+                  <label for="dusun">Dusun / Blok</label>
+                  <input type="text" id="dusun" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="kategori">Kategori *</label>
+                  <select id="kategori" class="form-control" required><option value="">-- Pilih Kategori --</option></select>
+                  <div class="error-msg">Silakan pilih kategori.</div>
+                </div>
+                <div class="form-group">
+                  <label for="judul">Judul Pengaduan *</label>
+                  <input type="text" id="judul" class="form-control" required maxlength="120">
+                  <div class="error-msg">Judul wajib diisi.</div>
+                </div>
+                <div class="form-group">
+                  <label for="isi">Isi Pengaduan *</label>
+                  <textarea id="isi" class="form-control" required rows="5"></textarea>
+                  <div class="error-msg">Isi pengaduan wajib diisi.</div>
+                </div>
+                <div class="form-group">
+                  <label for="lokasi">Lokasi Kejadian</label>
+                  <input type="text" id="lokasi" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="tanggalKejadian">Tanggal Kejadian</label>
+                  <input type="date" id="tanggalKejadian" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Foto Bukti (maks. 3)</label>
+                  <div class="upload-area" id="uploadArea" role="button" tabindex="0">
+                    <div>📷 Ketuk atau seret foto ke sini</div>
+                    <div class="hint">JPG/PNG, maks. 5 MB. Dikompres otomatis.</div>
+                    <input type="file" id="fotoInput" accept="image/*" multiple>
+                  </div>
+                  <div class="preview-fotos" id="previewFotos"></div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Kirim Pengaduan</button>
+              </form>
+            </div>
+          </div>
+          <div id="resultSection" style="display:none;">
+            <div class="ticket-box">
+              <div style="font-size:2.5rem;">✅</div>
+              <h2>Pengaduan Berhasil Dikirim</h2>
+              <p>Simpan kode tiket berikut untuk melacak status.</p>
+              <div class="ticket-code" id="ticketCode">—</div>
+              <button type="button" class="btn btn-secondary" id="btnCopyTicket">📋 Salin Kode</button>
+              <p style="margin-top:16px;"><a href="lacak.html" class="btn btn-outline">Cek Status Sekarang</a></p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" aria-live="polite"></div>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!Storage.requireUserOrRedirect()) return;
+      LuwungApp.initAppShell();
+      LuwungApp.initFormPengaduan();
+      LuwungApp.initCopyTicket();
+      var kat = new URLSearchParams(window.location.search).get('kategori');
+      var sel = document.getElementById('kategori');
+      if (kat && sel) { for (var i = 0; i < sel.options.length; i++) { if (sel.options[i].value === kat) { sel.value = kat; break; } } }
+    });
+  </script>
+  <script src="js/platform.js"></script>
+</body>
+</html>
